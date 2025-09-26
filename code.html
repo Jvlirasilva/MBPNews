@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPB News - Notícias da Música Popular Brasileira</title>
+    <style>
+        :root {
+            --bege: #F5F5DC;
+            --marrom: #8B4513;
+            --marrom-claro: #D2B48C;
+            --verde-musgo: #8A9A5B;
+            --branco: #FFFFFF;
+            --cinza: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bege);
+            color: var(--marrom);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--marrom);
+            color: var(--branco);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--verde-musgo);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--branco);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                       url('https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--branco);
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: var(--verde-musgo);
+            color: var(--branco);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #6B7A4B;
+        }
+
+        /* Artistas */
+        .artistas {
+            background: var(--branco);
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .artistas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .artista-card {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .artista-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .artista-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--marrom-claro);
+            margin: 0 auto 1rem;
+        }
+
+        /* Notícias */
+        .noticias {
+            padding: 4rem 0;
+        }
+
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .noticia-card {
+            background: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .noticia-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .noticia-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .noticia-content {
+            padding: 1.5rem;
+        }
+
+        .noticia-date {
+            color: var(--verde-musgo);
+            font-size: 0.9rem;
+        }
+
+        .noticia-title {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .noticia-desc {
+            color: var(--cinza);
+            margin-bottom: 1rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--verde-musgo);
+            color: var(--branco);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--marrom);
+            color: var(--branco);
+            padding: 3rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--verde-musgo);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--marrom-claro);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">MPB News</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#artistas">Artistas</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Música Popular Brasileira</h2>
+            <p>As últimas notícias sobre os maiores nomes da MPB</p>
+            <a href="#noticias" class="btn">Ver Notícias</a>
+        </div>
+    </section>
+
+    <!-- Artistas em Destaque -->
+    <section class="artistas" id="artistas">
+        <div class="container">
+            <h2 class="section-title">Artistas em Destaque</h2>
+            <div class="artistas-grid">
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Djavan, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Djavan</h3>
+                </div>
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Chico Buarque, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Chico Buarque</h3>
+                </div>
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Caetano Veloso, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Caetano Veloso</h3>
+                </div>
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Gilberto Gil, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Gilberto Gil</h3>
+                </div>
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Cazuza, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Cazuza</h3>
+                </div>
+                <div class="artista-card">
+                    <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                         alt="Belchior, cantor e compositor brasileiro" class="artista-img">
+                    <h3>Belchior</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Últimas Notícias -->
+    <section class="noticias" id="noticias">
+        <div class="container">
+            <h2 class="section-title">Últimas Notícias</h2>
+            <div class="noticias-grid">
+                <div class="noticia-card">
+                    <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Show de MPB com plateia animada" class="noticia-img">
+                    <div class="noticia-content">
+                        <div class="noticia-date">15 Maio 2023</div>
+                        <h3 class="noticia-title">Djavan anuncia nova turnê nacional</h3>
+                        <p class="noticia-desc">O cantor prepara repertório especial para celebrar 50 anos de carreira.</p>
+                        <a href="#" class="btn">Ler mais</a>
+                    </div>
+                </div>
+                <div class="noticia-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Chico Buarque em estúdio" class="noticia-img">
+                    <div class="noticia-content">
+                        <div class="noticia-date">12 Maio 2023</div>
+                        <h3 class="noticia-title">Chico Buarque lança biografia</h3>
+                        <p class="noticia-desc">Livro revela histórias inéditas da trajetória do compositor.</p>
+                        <a href="#" class="btn">Ler mais</a>
+                    </div>
+                </div>
+                <div class="noticia-card">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Show de Caetano Veloso" class="noticia-img">
+                    <div class="noticia-content">
+                        <div class="noticia-date">10 Maio 2023</div>
+                        <h3 class="noticia-title">Caetano Veloso recebe prêmio internacional</h3>
+                        <p class="noticia-desc">Artista é homenageado por contribuição à música mundial.</p>
+                        <a href="#" class="btn">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="contato">
+        <div class="container">
+            <h2 class="section-title">Fique por dentro</h2>
+            <p>Receba as últimas notícias sobre MPB no seu email</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor email" class="newsletter-input" required>
+                <button type="submit" class="btn">Assinar Newsletter</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <h3>MPB News</h3>
+                    <p>Sua fonte de notícias sobre Música Popular Brasileira</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#artistas">Artistas</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contato</h3>
+                    <p>contato@mpbnews.com.br</p>
+                    <p>(11) 99999-9999</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 MPB News. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('Obrigado por se inscrever! Em breve você receberá nossas novidades.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
